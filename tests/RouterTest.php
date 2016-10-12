@@ -8,6 +8,7 @@
  */
 namespace Slim\Tests;
 
+use Slim\Container;
 use Slim\Router;
 
 class RouterTest extends \PHPUnit_Framework_TestCase
@@ -418,7 +419,7 @@ class RouterTest extends \PHPUnit_Framework_TestCase
         $queryParams = ['a' => 'b', 'c' => 'd'];
 
         //create a router that mocks the pathFor with expected args
-        $router = $this->getMock('\Slim\Router', ['pathFor']);
+        $router = $this->getMockBuilder('\Slim\Router')->setMethods(['pathFor'])->getMock();
         $router->expects($this->once())->method('pathFor')->with($name, $data, $queryParams);
         $router->urlFor($name, $data, $queryParams);
 
